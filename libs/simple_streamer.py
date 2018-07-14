@@ -24,6 +24,6 @@ class SimpleStreamer(object):
 
     def get_frame(self):
         ret, frame = self.vc.read()
-        ret, image = get_output_image(frame)
+        ret, image = self.get_output_image(frame)
         return image.tobytes()
 
