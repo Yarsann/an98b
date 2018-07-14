@@ -17,13 +17,13 @@ class SimpleStreamer(object):
     def __del__(self):
         self.vc.release()
 
-    def flip_if_needed(self, frame):
+    def get_output_image(self, frame):
         if self.flip:
-            return cv2.flip(frame, 0)
-        return frame
+            frame = cv2.flip(frame, 0)
+        return cv2.imencode('.jpg', frame)
 
     def get_frame(self):
         ret, frame = self.vc.read()
-        ret, jpeg = cv2.imencode('.jpg', frame)
-        return jpeg.tobytes()
+        ret, image = get_output_image(frame)
+        return image.tobytes()
 
