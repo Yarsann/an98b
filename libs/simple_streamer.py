@@ -19,7 +19,8 @@ class SimpleStreamer(object):
 
     def get_output_image(self, frame):
         if self.flip:
-            frame = cv2.flip(frame, 0)
+            flipped_frame = cv2.flip(frame, 0)
+            return cv2.imencode('.jpg', flipped_frame)
         return cv2.imencode('.jpg', frame)
 
     def get_frame(self):
