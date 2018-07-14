@@ -20,6 +20,11 @@ def index():
     return Response(gen(video_camera),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/save')
+def save():
+    while True:
+        video_camera.save_frame()
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=False, threaded=True)
 
