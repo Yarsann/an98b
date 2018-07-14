@@ -26,7 +26,7 @@ class SimpleStreamer(object):
         if self.flip:
             flipped_frame = cv2.flip(frame, 0)
             # save as movie file
-            selft.out.write(flipped_frame)
+            self.out.write(flipped_frame)
             return cv2.imencode('.jpg', flipped_frame)
         return cv2.imencode('.jpg', frame)
 
