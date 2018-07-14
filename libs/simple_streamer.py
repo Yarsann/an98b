@@ -25,14 +25,20 @@ class SimpleStreamer(object):
     def get_output_image(self, frame):
         if self.flip:
             flipped_frame = cv2.flip(frame, 0)
-            # save as movie file
-            saving_frame = flipped_frame
-            self.out.write(saving_frame)
             return cv2.imencode('.jpg', flipped_frame)
         return cv2.imencode('.jpg', frame)
+
+    def save_output_image(self, frame):
+        if self.flip:
+            flipped_frame = cv2.flip(frame, 0)
+            return self.out.write(flipped_frame)
+        return self.out.write(frame)
 
     def get_frame(self):
         ret, frame = self.vc.read()
         ret, image = self.get_output_image(frame)
-        return image.tobytes()
+        try:
+            self.save_output_image(frame)
+        finally:
+            return image.tobytes()
 
