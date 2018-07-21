@@ -1,16 +1,16 @@
 import numpy as np
-#import matplotlib.pyplot as plt
 import random
 import itertools
 import math
 import cv2
-import itertools
 
-vc = cv2.VideoCapture(0)
-success, image = vc.read()
+#vc = cv2.VideoCapture(0)
+#success, image = vc.read()
+image = cv2.imread("before1.png")
+
 image_s = cv2.resize(image, (1280,720))
 
-cv2.imwrite("before1.png",image_s)
+cv2.imwrite("before.png",image_s)
 
 vertex = 640
 dst_map = np.array(list(itertools.product(range(vertex),range(vertex*2))))
