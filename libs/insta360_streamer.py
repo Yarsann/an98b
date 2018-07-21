@@ -11,8 +11,8 @@ class SimpleStreamer(object):
         # Video Capture
         try:
             self.vc = cv2.VideoCapture(0)
-            self.map_x = np.load("map_x.npy")
-            self.map_y = np.load("map_y.npy")
+            self.map_x = np.load("/var/isaax/project/libs/map_x.npy")
+            self.map_y = np.load("/var/isaax/project/libs/map_y.npy")
         except:
             print(self.vc)
         self.flip = flip
