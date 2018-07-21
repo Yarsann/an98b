@@ -8,11 +8,11 @@ class SimpleStreamer(object):
         # Define the codec and create VideoWriter object
         #fourcc = cv2.VideoWriter_fourcc(*'XVID')
         #self.out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
-        self.map_x = np.load("map_x.npy")
-        self.map_y = np.load("map_y.npy")
         # Video Capture
         try:
             self.vc = cv2.VideoCapture(0)
+            self.map_x = np.load("libs/map_x.npy")
+            self.map_y = np.load("libs/map_y.npy")
         except:
             print(self.vc)
         self.flip = flip
