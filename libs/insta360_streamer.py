@@ -1,6 +1,5 @@
 import numpy as np
 import random
-import itertools
 import math
 import cv2
 
@@ -14,10 +13,10 @@ cv2.imwrite("before.png",image_s)
 
 vertex = 640
 dst_map = np.array(list(itertools.product(range(vertex),range(vertex*2))))
-print(dst_map)
+#print(dst_map)
 
 src_cx = 319
-src_cy = 319
+src_cy = 329
 src_r = 283
 src_cx2 = 1280 - src_cx
 
@@ -41,9 +40,9 @@ for y in range(vertex):
         #2 立体射影逆変換
         #3 正射影
         #4 正射影逆変換
-        method = 0
+        method = 2
         
-        if(phi2 < math.pi / 2):
+        if(phi2 < math.pi):
             #等距離射影
             if method == 0:
                 r_ = phi2 / math.pi * 2
@@ -79,10 +78,13 @@ for y in range(vertex):
                 r_ = 1 - math.sin(- math.pi / 2 + phi2)
             map_x[y,x] = src_r * r_ * math.cos(math.pi - theta2) + src_cx2
             map_y[y,x] = src_r * r_ * math.sin(math.pi - theta2) + src_cy         
-            
+
 map_x = map_x.astype('float32')
 map_y = map_y.astype('float32')
 
-image2 = cv2.remap( image_s, map_x, map_y, cv2.INTER_LINEAR, cv2.BORDER_CONSTANT);
+np.save("map_x.npy", map_x)
+np.save("map_y.npy", map_y)
+
+image2 = cv2.remap( image_s, np.load("map_x.npy"), np.load("map_y.npy"), cv2.INTER_LINEAR, cv2.BORDER_CONSTANT);
 
 cv2.imwrite("Equirectangular.png",image2)
