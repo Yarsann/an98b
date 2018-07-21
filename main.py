@@ -1,10 +1,11 @@
 from flask import Flask, render_template, Response
-from libs.simple_streamer import SimpleStreamer as VideoCamera
+# from libs.simple_streamer import SimpleStreamer as VideoCamera
+from libs.insta360_streamer import SimpleStreamer as VideoCamera
 
 import time
 import threading
 
-video_camera = VideoCamera(flip=True)
+video_camera = VideoCamera(flip=False)
 
 
 app = Flask(__name__)
