@@ -54,7 +54,6 @@ class SimpleStreamer(object):
         src_r = 283
         src_cx2 = 1280 - src_cx
 
-
         map_x = np.zeros((vertex,vertex*2))
         map_y = np.zeros((vertex,vertex*2))
         for y in range(vertex):
